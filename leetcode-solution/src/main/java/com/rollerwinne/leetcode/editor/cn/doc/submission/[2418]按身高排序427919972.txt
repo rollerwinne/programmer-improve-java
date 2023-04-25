@@ -1,0 +1,36 @@
+    class Solution {
+        public String[] sortPeople(String[] names, int[] heights) {
+            quickSort(names, heights, 0, names.length - 1);
+            return names;
+        }
+
+        public void quickSort(String[] names, int[] heights, int start, int end) {
+            if (start >= end)
+                return;
+            int i = start, j = end, base = heights[start], temp;
+            String baseStr = names[start], tmp;
+            while (i < j) {
+                while (heights[j] <= base && i < j) {
+                    j--;
+                }
+                while (heights[i] >= base && i < j) {
+                    i++;
+                }
+                temp = heights[i];
+                tmp = names[i];
+                heights[i] = heights[j];
+                names[i] = names[j];
+                heights[j] = temp;
+                names[j] = tmp;
+            }
+            heights[start] = heights[i];
+            names[start] = names[i];
+            heights[i] = base;
+            names[i] = baseStr;
+            quickSort(names, heights, start, i - 1);
+            quickSort(names, heights, i + 1, end);
+        }
+    }
+
+//runtime:2 ms
+//memory:42 MB

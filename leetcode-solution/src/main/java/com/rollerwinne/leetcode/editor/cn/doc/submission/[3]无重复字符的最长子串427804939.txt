@@ -1,0 +1,31 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null) {
+            return 0;
+        }
+        byte[] bytes = s.getBytes();
+        int length = 0;
+        for (int i = 0; i < bytes.length; i++) {
+            Set<Byte> set = new HashSet<>();
+            int num = 0;
+            for (int j = i; j < bytes.length; j++) {
+                if (set.contains(bytes[j])){
+                    if (num > length){
+                        length = num;
+                    }
+                    break;
+                }
+                set.add(bytes[j]);
+                num++;
+            }
+        }
+        return length;
+    }
+}
+
+//total_testcases:987
+//total_correct:879
+//input_formatted:" "
+//expected_output:1
+//code_output:0
+//last_testcase:" "

@@ -1,0 +1,25 @@
+    class Solution {
+        public int lengthOfLongestSubstring(String s) {
+            if (s == null) {
+                return 0;
+            }
+            byte[] bytes = s.getBytes();
+            int length = 0;
+            for (int i = 0; i < bytes.length; i++) {
+                Set<Byte> set = new HashSet<>();
+                for (int j = i; j < bytes.length; j++) {
+                    if (set.contains(bytes[j])) {
+                        break;
+                    }
+                    set.add(bytes[j]);
+                }
+                if (set.size() > length) {
+                    length = set.size();
+                }
+            }
+            return length;
+        }
+    }
+
+//runtime:94 ms
+//memory:42.3 MB
